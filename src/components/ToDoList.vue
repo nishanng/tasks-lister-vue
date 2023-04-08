@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>My Tasks</h2>
+    <h2>Tasks</h2>
     <div class="task-container">
       <div class="input-container">
         <input type="text" v-model="newTask" @keyup.enter="addTask" placeholder="Enter a new task" />

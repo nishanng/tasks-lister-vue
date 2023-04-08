@@ -1,17 +1,18 @@
 <template>
   <section>
     <h2>Tasks</h2>
-    <form @submit.prevent="addTask">
-      <input type="text" v-model="newTask" placeholder="Add a new task" />
-      <button type="submit">Add</button>
-    </form>
-    <ul>
-      <li v-for="(task, index) in tasks" :key="index">
-        <input type="checkbox" v-model="task.completed" />
-        <span :class="{ 'completed-task': task.completed }">{{ task.title }}</span>
-        <button @click="deleteTask(index)">Delete</button>
-      </li>
-    </ul>
+    <div class="task-container">
+      <input type="text" v-model="newTask" @keyup.enter="addTask" placeholder="Enter a new task" />
+      <ul>
+        <li v-for="(task, index) in tasks" :key="index">
+          <div class="task-item">
+            <input type="checkbox" @change="toggleCompleted(task)" :checked="task.completed" />
+            <label :class="{ 'task-completed': task.completed }">{{ task.text }}</label>
+          </div>
+          <button @click="deleteTask(index)">Delete</button>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 
@@ -27,13 +28,17 @@ export default {
   methods: {
     addTask() {
       if (this.newTask.trim()) {
-        this.tasks.push({ title: this.newTask.trim(), completed: false });
+        const capitalizedTask = this.newTask.charAt(0).toUpperCase() + this.newTask.slice(1);
+        this.tasks.push({ text: capitalizedTask, completed: false });
         this.newTask = "";
       }
     },
     deleteTask(taskIndex) {
       this.tasks.splice(taskIndex, 1);
     },
+    toggleCompleted(task) {
+    task.completed = !task.completed;
+  },
   },
 };
 </script>
@@ -64,5 +69,32 @@ button {
 button:hover {
   background-color: #1c86ee;
 }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+.task-completed {
+  text-decoration: line-through;
+  color: red;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+.task-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .task-container {
+    width: 90%;
+  }
+}
+
 
 </style>

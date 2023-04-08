@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Tasks lister: Get things done</h1>
+    <h1>Tasks lister: Get things done 🚀</h1>
   </header>
 </template>
 

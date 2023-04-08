@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import AppHeader from "../components/AppHeader.vue";
-import ToDoList from "../components/ToDoList.vue";
+import AppHeader from "./components/AppHeader.vue";
+import ToDoList from "./components/ToDoList.vue";
 
 export default {
   name: "App",

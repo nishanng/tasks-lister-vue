@@ -20,4 +20,14 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-export { app, db, auth };
+const provider = new GoogleAuthProvider();
+
+const signInWithGoogle = async () => {
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { app, db, auth, signInWithGoogle };

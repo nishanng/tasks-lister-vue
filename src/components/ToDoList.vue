@@ -1,20 +1,19 @@
 <template>
   <section>
-    <h2>Tasks</h2>
+    <h2>My Tasks</h2>
     <div class="task-container">
       <div class="input-container">
         <input type="text" v-model="newTask" @keyup.enter="addTask" placeholder="Enter a new task" />
         <button @click="addTask">Add</button>
-        <ul>
-          <li v-for="(task, index) in tasks" :key="index">
-            <div class="task-item">
-              <input type="checkbox" @change="toggleCompleted(task)" :checked="task.completed" />
-              <label :class="{ 'task-completed': task.completed }">{{ task.text }}</label>
-              <button class="delete-button" @click="deleteTask(index)">Delete</button>
-            </div>
-          </li>
-        </ul>
       </div>
+      <ul>
+        <li v-for="(task, index) in tasks" :key="index">
+          <div class="task-item">
+            <input type="checkbox" @change="toggleCompleted(task)" :checked="task.completed" />
+            <label :class="{ 'task-completed': task.completed }">{{ task.text }}</label>
+          </div>
+        </li>
+      </ul>
       <button v-if="showDeleteAllButton" class="delete-all-button" @click="deleteAllTasks">Delete All</button>
     </div>
   </section>
@@ -50,8 +49,13 @@ export default {
       this.tasks = [];
     },
     toggleCompleted(task) {
-      task.completed = !task.completed;
-    },
+    task.completed = !task.completed;
+    if (task.completed) {
+      task.textClass = 'task-completed';
+    } else {
+      task.textClass = '';
+    }
+  }
   },
 };
 </script>
@@ -65,6 +69,11 @@ input[type="text"] {
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid #ccc;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }
 
 ul {
@@ -93,6 +102,15 @@ button {
 button:hover {
   background-color: #1c86ee;
 }
+.task-container {
+  width: 50%;
+  margin: 20px auto;
+  text-align: center;
+}
+.task-completed {
+  text-decoration: line-through;
+  color: red;
+}
 
 .delete-button {
   font-size: 14px;
@@ -117,6 +135,11 @@ button:hover {
   border: 1px solid #ccc;
   background-color: #dc143c;
   color: white;
+}
+@media screen and (max-width: 600px) {
+  input[type="text"] {
+    width: 100%;
+  }
 }
 </style>
 

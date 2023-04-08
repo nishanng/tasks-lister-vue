@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>ToDo App</h1>
+    <h1>Manage your todo's easily</h1>
   </header>
 </template>
 
@@ -16,5 +16,7 @@ header {
   padding: 20px;
   text-align: center;
   color: white;
+  font-family: "Roboto", sans-serif; /* Add this line to change the font for the heading */
 }
+
 </style>

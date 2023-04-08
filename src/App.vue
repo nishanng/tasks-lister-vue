@@ -26,5 +26,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: #d8d8d8; /* Add this line for the subtle grey background */
 }
+
 </style>

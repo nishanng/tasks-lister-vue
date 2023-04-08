@@ -39,12 +39,30 @@ export default {
 </script>
 
 <style scoped>
-section {
-  margin: 20px;
+input[type="text"] {
+  font-size: 16px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  width: 60%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
-.completed-task {
-  text-decoration: line-through;
-  color: #ccc;
+button {
+  font-size: 16px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  margin-left: 10px; /* Add this line to create space between the input field and button */
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #1e90ff;
+  color: white;
 }
+
+button:hover {
+  background-color: #1c86ee;
+}
+
 </style>

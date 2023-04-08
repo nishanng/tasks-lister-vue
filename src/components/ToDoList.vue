@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>Tasks</h2>
+    <h2>To-do's</h2>
     <div class="task-container">
       <div class="input-container">
         <input type="text" v-model="newTask" @keyup.enter="addTask" placeholder="Enter a new task" />
@@ -10,7 +10,8 @@
         <li v-for="(task, index) in tasks" :key="index">
           <div class="task-item">
             <input type="checkbox" @change="toggleCompleted(task)" :checked="task.completed" />
-            <label :class="{ 'task-completed': task.completed }">{{ task.text }}</label>
+            <label :class="[task.completed ? 'task-completed' : '', task.delete ? 'delete' : '']" @click="addDeleteButton(task)">{{ task.text }}</label>
+            <button v-if="task.delete" class="delete-button" @click="deleteTask(index)">Delete</button>
           </div>
         </li>
       </ul>
@@ -18,7 +19,6 @@
     </div>
   </section>
 </template>
-
 
 <script>
 export default {
@@ -49,16 +49,22 @@ export default {
       this.tasks = [];
     },
     toggleCompleted(task) {
-    task.completed = !task.completed;
-    if (task.completed) {
-      task.textClass = 'task-completed';
-    } else {
-      task.textClass = '';
+      task.completed = !task.completed;
+      if (task.completed) {
+        task.textClass = 'task-completed';
+      } else {
+        task.textClass = '';
+      }
+    },
+    addDeleteButton(task) {
+      if (task.completed && !task.delete) {
+        task.delete = true;
+      }
     }
-  }
   },
 };
 </script>
+
 
 <style scoped>
 input[type="text"] {
@@ -126,6 +132,11 @@ button:hover {
   background-color: #ff4136;
 }
 
+.delete-button {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}
 .delete-all-button {
   font-size: 16px;
   padding: 8px 12px;

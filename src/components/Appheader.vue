@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Get Things Done: A Simple To-Do List App</h1>
+    <h1>Tasks lister: Get things done</h1>
   </header>
 </template>
 

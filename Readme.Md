@@ -16,11 +16,4 @@ Check out the live demo here: https://nishanng.github.io/tasks-lister-vue/
 2. Install dependencies with `npm install`.
 3. Run the app with `npm run dev` and navigate to http://localhost:5173/ in your browser.
 
-## How to Contribute
-1. Fork the repository.
-2. Create a new branch.
-3. Make changes and commit them.
-4. Push the changes to the branch.
-5. Create a pull request.
-
 
